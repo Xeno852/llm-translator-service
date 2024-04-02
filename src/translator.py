@@ -78,64 +78,66 @@ def translate_content(content: str) -> tuple[bool, str]:
 
 # Below is unnessary for this current checkpoint (CP2), however should be used for the final checkpoint (CP3):
 # """
-# def get_translation(post: str) -> str:
-#     # Initialize the ChatModel with the specific model identifier
-#     chat_model = ChatModel.from_pretrained("chat-bison@001")
-#     # Define a context or prompt modification to guide the model towards translation.
-#     # This might need to be adjusted based on the model's training and expected input format.
-#     trans_context = "Translate the following text to English with the highest semantic meaning. The response you give following this should ONLY include the traslated text.:"
-#     """
-#     Translates non-English posts into English using the Vertex AI 'chat-bison' model.
+def get_translation(post: str) -> str:
+    # Initialize the ChatModel with the specific model identifier
+    # chat_model = ChatModel.from_pretrained("chat-bison@001")
+    # Define a context or prompt modification to guide the model towards translation.
+    # This might need to be adjusted based on the model's training and expected input format.
+    trans_context = "Translate the following text to English with the highest semantic meaning. The response you give following this should ONLY include the traslated text.:"
+    """
+    Translates non-English posts into English using the Vertex AI 'chat-bison' model.
 
-#     Args:
-#         post (str): The text to be translated.
+    Args:
+        post (str): The text to be translated.
 
-#     Returns:
-#         str: The translated text.
-#     """
-#     # Parameters for controlling the model's behavior
-#     parameters = {
-#         "temperature": 0.7,
-#         "max_output_tokens": 256,
-#     }
+    Returns:
+        str: The translated text.
+    """
+    # Parameters for controlling the model's behavior
+    parameters = {
+        "temperature": 0.7,
+        "max_output_tokens": 256,
+    }
 
-#     # Initialize a chat session with the provided context
-#     chat = chat_model.start_chat(context=trans_context)
+    # Initialize a chat session with the provided context
+    # chat = chat_model.start_chat(context=trans_context)
 
-#     # Send the post to the model for translation
-#     response = chat.send_message(post, **parameters)
-#     # print("CALLED")
-#     # print(f"RESPONSE HERE IS {response.text}")
+    # Send the post to the model for translation
+    # response = chat.send_message(post, **parameters)
+    response = "MOCK"
+    # print("CALLED")
+    # print(f"RESPONSE HERE IS {response.text}")
 
-#     # Return the model's response text, which should be the translation
-#     return response.text
+    # Return the model's response text, which should be the translation
+    return response.text
 
-# def get_language(post: str) -> str:
-#     chat_model = ChatModel.from_pretrained("chat-bison@001")
-#     language_ident_context = "Identify the language of the following text. Answer only in the language. Say the languages in their English version. For example say \"Spanish\", not \"This is Spanish\". For examples such as brazilian portuguese vs european portuguese, just flatten it to only be Portuguese. Also include no punctionation, only the language name in english:"
-#     """
-#     Identifies the language of the given text using the Vertex AI 'chat-bison' model.
+def get_language(post: str) -> str:
+    # chat_model = ChatModel.from_pretrained("chat-bison@001")
+    language_ident_context = "Identify the language of the following text. Answer only in the language. Say the languages in their English version. For example say \"Spanish\", not \"This is Spanish\". For examples such as brazilian portuguese vs european portuguese, just flatten it to only be Portuguese. Also include no punctionation, only the language name in english:"
+    """
+    Identifies the language of the given text using the Vertex AI 'chat-bison' model.
 
-#     Args:
-#         post (str): The text whose language is to be identified.
+    Args:
+        post (str): The text whose language is to be identified.
 
-#     Returns:
-#         str: The identified language.
-#     """
-#     # Parameters for controlling the model's behavior
-#     parameters = {
-#         "temperature": 0.7,
-#         "max_output_tokens": 256,
-#     }
+    Returns:
+        str: The identified language.
+    """
+    # Parameters for controlling the model's behavior
+    parameters = {
+        "temperature": 0.7,
+        "max_output_tokens": 256,
+    }
 
-#     # Initialize a chat session with the provided context
-#     chat = chat_model.start_chat(context=language_ident_context)
+    # Initialize a chat session with the provided context
+    # chat = chat_model.start_chat(context=language_ident_context)
 
-#     # Send the post to the model for language identification
-#     response = chat.send_message(post, **parameters)
+    # Send the post to the model for language identification
+    # response = chat.send_message(post, **parameters)
+    response = "MOCK"
 
-#     # Return the model's response text, which should be the language identification
-#     return response.text
+    # Return the model's response text, which should be the language identification
+    return response.text
 
 
 # def query_llm(post: str) -> tuple[bool, str]:
