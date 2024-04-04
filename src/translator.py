@@ -105,11 +105,11 @@ def get_translation(post: str) -> str:
     }
 
     # Initialize a chat session with the provided context
-    # chat = chat_model.start_chat(context=trans_context)
+    chat = chat_model.start_chat(context=trans_context)
 
     # Send the post to the model for translation
-    # response = chat.send_message(post, **parameters)
-    response = "MOCK"
+    response = chat.send_message(post, **parameters)
+    # response = "MOCK"
     # print("CALLED")
     # print(f"RESPONSE HERE IS {response.text}")
 
