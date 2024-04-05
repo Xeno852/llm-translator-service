@@ -3,8 +3,7 @@ from vertexai.language_models import ChatModel, InputOutputTextPair
 
 
 
-
-from typing import Callable
+# from typing import Callable
 # def translate_content(content: str) -> tuple[bool, str]:
 #     if content == "这是一条中文消息":
 #         return False, "This is a Chinese message"
