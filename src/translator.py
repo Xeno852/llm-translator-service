@@ -84,11 +84,14 @@ def translate_content(content: str) -> tuple[bool, str]:
 # Below is unnessary for this current checkpoint (CP2), however should be used for the final checkpoint (CP3):
 # """
 def get_translation(post: str) -> str:
+    if not post.strip():
+        return "" 
+
     # Initialize the ChatModel with the specific model identifier
     chat_model = ChatModel.from_pretrained("chat-bison@001")
     # Define a context or prompt modification to guide the model towards translation.
     # This might need to be adjusted based on the model's training and expected input format.
-    trans_context = "Translate the following text to English with the highest semantic meaning. The response you give following this should ONLY include the traslated text.:"
+    trans_context = f"Translate the following text from {get_language(post)} to English with the highest semantic meaning. The response you give following this should ONLY include the traslated text. ANYTHING YOU NOW RESPOND WITH SHOULD ONLY BE A DIRECT TRANSLATION OF THE TEXT YOU WERE GIVEN WITHOUT ANY MODIFICATIONS. YOU SHOULD NOT RESPOND BACK TO THE ORIGINAL TEXT YOU WERE GIVEN. YOU SHOULD ONLY RESPOND WITH THE TRANSLATED TEXT:"
     """
     Translates non-English posts into English using the Vertex AI 'chat-bison' model.
 
@@ -117,6 +120,10 @@ def get_translation(post: str) -> str:
     return response.text
 
 def get_language(post: str) -> str:
+    if not post.strip():
+        # return "Empty content" 
+        return ""  
+
     chat_model = ChatModel.from_pretrained("chat-bison@001")
     language_ident_context = "Identify the language of the following text. Answer only in the language. Say the languages in their English version. For example say \"Spanish\", not \"This is Spanish\". For examples such as brazilian portuguese vs european portuguese, just flatten it to only be Portuguese. Also include no punctionation, only the language name in english:"
     """
@@ -158,13 +165,13 @@ def query_llm(post: str) -> tuple[bool, str]:
                           and the original post or its English translation.
     """
     # Placeholder for LLM's language detection (simulated)
-    if (get_language(post).lower == "english"):
+    if (get_language(post).lower() == "english"):
         return (True, post)
         # return (True, post)
     else:
 
       translation = get_translation(post) 
-
+    #   print(f"TRANSLATION LANGUAGE IS {get_language(post).lower()}")
       # return (False, translation)
       return (False, translation)
     return "Translation not avalible"
